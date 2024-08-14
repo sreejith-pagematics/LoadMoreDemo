@@ -1,0 +1,646 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:rgAnimations="clr-namespace:RGPopup.Maui.Animations;assembly=RGPopup.Maui" 
+    xmlns:pages="clr-namespace:RGPopup.Maui.Pages;assembly=RGPopup.Maui"
+    NavigationPage.HasNavigationBar="false"
+    xmlns:maps="http://schemas.microsoft.com/dotnet/2021/maui/maps"
+    xmlns:sensors="clr-namespace:Microsoft.Maui.Devices.Sensors;assembly=Microsoft.Maui.Essentials"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Maui;assembly=FFImageLoading.Maui"
+    xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Maui"
+    BackgroundColor="White"
+    x:Class="NeedHelp.Pages.FriendDetailsPage">
+
+    <ContentPage.Content>
+        <StackLayout>
+            <Grid BackgroundColor="#eeeeee">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="{OnIdiom Phone=60, Tablet=90, Desktop=60}" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1.5*" />
+                    <ColumnDefinition Width="7*" />
+                    <ColumnDefinition Width="1.5*" />
+                </Grid.ColumnDefinitions>
+
+                <StackLayout 
+                    Style="{StaticResource HeaderFirstStackStyle}">
+                    
+                    <Image 
+                        Source="ic_backa_xx.png"
+                        x:Name="backicon"
+                        Style="{StaticResource HeaderImageStyle}"/>
+
+                    <Label 
+                        Margin="2,0,0,0"
+                        Style="{StaticResource HeaderBackLabelStyle}" 
+                        x:Name="labelback"/>
+                </StackLayout>
+
+                <StackLayout 
+                    Style="{StaticResource HeaderSecondStackStyle}">
+
+                    <Label 
+                        x:Name="Label_title"
+                        Style="{StaticResource HeaderLabelStyle}"/>
+                </StackLayout>
+
+                <StackLayout 
+                    Style="{StaticResource HeaderThirdStackStyle}">
+
+                    <Image 
+                        Source="ic_remove_contact_xx.png"
+                        HorizontalOptions="End"
+                        Margin="0,0,5,0"
+                        x:Name="Remove_Contact"
+                        Style="{StaticResource HeaderImageStyle}"
+                        IsVisible="false">
+                    </Image>
+                </StackLayout>
+            </Grid>
+
+            <ScrollView 
+                x:Name="frienddetails_scrollview"
+                Orientation="Vertical" 
+                VerticalOptions="FillAndExpand" 
+                HorizontalOptions="FillAndExpand">
+                
+                <StackLayout
+                    Margin="15">
+                    
+                    <Frame 
+                        BorderColor="#efefef"
+                        BackgroundColor="White"
+                        CornerRadius="5"
+                        HasShadow="False"
+                        Padding="5">
+                        <StackLayout
+                            Orientation="Vertical">
+
+                            <StackLayout 
+                                HorizontalOptions="FillAndExpand"
+                                Orientation="Horizontal"
+                                Padding="5">
+                                <StackLayout
+                                    Orientation="Vertical"
+                                    VerticalOptions="Start">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="12.25*" />
+                                        </Grid.ColumnDefinitions>
+                                        <Grid Grid.Column="1">
+                                            <ffimageloading:CachedImage 
+                                                Source="ic_profilebg_xx.png"
+                                                VerticalOptions="Start"
+                                                Margin="10,0,10,5"
+                                                x:Name="imagebg"
+                                                Aspect="AspectFit">
+                                                <ffimageloading:CachedImage.HeightRequest >
+                                                    <OnIdiom x:TypeArguments="x:Double">
+                                                        <OnIdiom.Phone>80</OnIdiom.Phone>
+                                                        <OnIdiom.Tablet>120</OnIdiom.Tablet>
+                                                        <OnIdiom.Desktop>80</OnIdiom.Desktop>
+                                                    </OnIdiom>
+                                                </ffimageloading:CachedImage.HeightRequest>
+                                                <ffimageloading:CachedImage.WidthRequest>
+                                                    <OnIdiom x:TypeArguments="x:Double">
+                                                        <OnIdiom.Phone>80</OnIdiom.Phone>
+                                                        <OnIdiom.Tablet>120</OnIdiom.Tablet>
+                                                        <OnIdiom.Desktop>80</OnIdiom.Desktop>
+                                                    </OnIdiom>
+                                                </ffimageloading:CachedImage.WidthRequest>
+                                                <ffimageloading:CachedImage.Transformations>
+                                                    <fftransformations:CircleTransformation BorderHexColor="#f2f2f0" BorderSize="{OnIdiom Phone=30,Tablet=45, Desktop=30}" />
+                                                </ffimageloading:CachedImage.Transformations>
+                                            </ffimageloading:CachedImage>
+                                            <Label 
+                                                x:Name="Inital_label"
+                                                HorizontalTextAlignment="Center"
+                                                VerticalTextAlignment="Center"
+                                                FontAttributes="Bold"
+                                                TextColor="White">
+                                                <Label.FontSize>
+                                                    <OnIdiom x:TypeArguments="x:Double">
+                                                        <OnIdiom.Phone>20</OnIdiom.Phone>
+                                                        <OnIdiom.Tablet>30</OnIdiom.Tablet>
+                                                        <OnIdiom.Desktop>20</OnIdiom.Desktop>
+                                                    </OnIdiom>
+                                                </Label.FontSize>
+                                            </Label>
+                                        </Grid>
+                                    </Grid>
+
+                                    <StackLayout
+                                        Orientation="Vertical"
+                                        x:Name="Emergency_layout"
+                                        HorizontalOptions="CenterAndExpand">
+                                        <StackLayout
+                                            HorizontalOptions="CenterAndExpand"
+                                            Margin="0,0,0,5"
+                                            Orientation="Horizontal">
+                                            <Image 
+                                                HorizontalOptions="CenterAndExpand"
+                                                Source="ic_red_dot_xx.pnHistory_labelg"
+                                                VerticalOptions="Center">
+                                                <Image.HeightRequest>
+                                                    <OnIdiom x:TypeArguments="x:Double">
+                                                        <OnIdiom.Phone>5</OnIdiom.Phone>
+                                                        <OnIdiom.Tablet>8</OnIdiom.Tablet>
+                                                        <OnIdiom.Desktop>5</OnIdiom.Desktop>
+                                                    </OnIdiom>
+                                                </Image.HeightRequest>
+                                                <Image.WidthRequest>
+                                                    <OnIdiom x:TypeArguments="x:Double">
+                                                        <OnIdiom.Phone>5</OnIdiom.Phone>
+                                                        <OnIdiom.Tablet>8</OnIdiom.Tablet>
+                                                        <OnIdiom.Desktop>5</OnIdiom.Desktop>
+                                                    </OnIdiom>
+                                                </Image.WidthRequest>
+                                            </Image>
+                                            <Label 
+                                                HorizontalTextAlignment="Start"
+                                                x:Name="Emergency_label"
+                                                Margin="3,0,0,0"
+                                                VerticalTextAlignment="Center"
+                                                TextColor="#ff3f40"
+                                                Text="Active">
+                                                <Label.FontSize>
+                                                    <OnIdiom x:TypeArguments="x:Double">
+                                                        <OnIdiom.Phone>15</OnIdiom.Phone>
+                                                        <OnIdiom.Tablet>23</OnIdiom.Tablet>
+                                                        <OnIdiom.Desktop>15</OnIdiom.Desktop>
+                                                    </OnIdiom>
+                                                </Label.FontSize>
+                                            </Label>
+                                        </StackLayout>
+                                        <Button
+                                            Text="Mark as Safe" 
+                                            BackgroundColor="#f09022"
+                                            TextColor="White"
+                                            CornerRadius="5"
+                                            TextTransform="None"
+                                            HorizontalOptions="CenterAndExpand"
+                                            Padding="5">
+                                            <Button.HeightRequest>
+                                                <OnIdiom x:TypeArguments="x:Double">
+                                                    <OnIdiom.Phone>30</OnIdiom.Phone>
+                                                    <OnIdiom.Tablet>45</OnIdiom.Tablet>
+                                                    <OnIdiom.Desktop>30</OnIdiom.Desktop>
+                                                </OnIdiom>
+                                            </Button.HeightRequest>
+                                            <Button.WidthRequest>
+                                                <OnIdiom x:TypeArguments="x:Double">
+                                                    <OnIdiom.Phone>100</OnIdiom.Phone>
+                                                    <OnIdiom.Tablet>150</OnIdiom.Tablet>
+                                                    <OnIdiom.Desktop>100</OnIdiom.Desktop>
+                                                </OnIdiom>
+                                            </Button.WidthRequest>
+                                        </Button>
+                                    </StackLayout>
+                                </StackLayout>
+
+                                <StackLayout
+                                    HorizontalOptions="FillAndExpand"
+                                    Margin="20,0,0,0">
+                                    
+                                    <Label 
+                                        x:Name="Name_label"
+                                        TextColor="#323232">
+                                        <Label.FontSize>
+                                            <OnIdiom x:TypeArguments="x:Double">
+                                                <OnIdiom.Phone>20</OnIdiom.Phone>
+                                                <OnIdiom.Tablet>30</OnIdiom.Tablet>
+                                                <OnIdiom.Desktop>20</OnIdiom.Desktop>
+                                            </OnIdiom>
+                                        </Label.FontSize>
+                                    </Label>
+
+                                    <StackLayout
+                                        Orientation="Horizontal"
+                                        Margin="0,5,0,0">
+                                        <Image 
+                                            Source="ic_phone_xx.png"
+                                            Style="{StaticResource FriendImageStyle}"/>
+                                        <Label 
+                                            x:Name="Number_label"
+                                            HorizontalTextAlignment="Center"
+                                            Style="{StaticResource DetailsFriendLabelStyle}"/>
+                                    </StackLayout>
+                                    
+                                    <BoxView Style="{StaticResource FriendBoxviewStyle}"/>
+
+                                    <Grid x:Name="email_grid">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="12.25*" />
+                                        </Grid.ColumnDefinitions>
+                                        <Image 
+                                            Grid.Column="0"
+                                            Source="ic_email_xx.png"
+                                            Style="{StaticResource FriendImageStyle}"/>
+                                        <Label 
+                                            Grid.Column="1"
+                                            x:Name="Email_label"
+                                            Margin="5,0,0,0"
+                                            Style="{StaticResource DetailsFriendLabelStyle}"/>
+                                    </Grid>
+
+                                    <BoxView x:Name="email_boxview" Style="{StaticResource FriendBoxviewStyle}"/>
+                                    
+                                    <Grid x:Name="address_grid">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="12.25*" />
+                                        </Grid.ColumnDefinitions>
+                                        <Image 
+                                            Grid.Column="0"
+                                            Source="ic_location_xx.png"
+                                            Style="{StaticResource FriendImageStyle}"/>
+
+                                        <Label 
+                                            Grid.Column="1"
+                                            x:Name="Address_label"
+                                            Style="{StaticResource DetailsFriendLabelStyle}"/>
+                                    </Grid>
+
+                                    <BoxView 
+                                        x:Name="monitor_request_boxview" 
+                                        Style="{StaticResource FriendBoxviewStyle}"/>
+                                </StackLayout>
+                            </StackLayout>
+
+                            <StackLayout
+                                Orientation="Vertical"
+                                x:Name="Monitor_Layout"
+                                Margin="10"
+                                HorizontalOptions="EndAndExpand">
+                                <Label 
+                                    Text="Monitor request:"
+                                    Margin="0,10,0,10"
+                                    HorizontalOptions="Center"
+                                    TextColor="Black">
+                                    <Label.FontSize>
+                                        <OnIdiom x:TypeArguments="x:Double">
+                                            <OnIdiom.Phone>15</OnIdiom.Phone>
+                                            <OnIdiom.Tablet>22</OnIdiom.Tablet>
+                                            <OnIdiom.Desktop>15</OnIdiom.Desktop>
+                                        </OnIdiom>
+                                    </Label.FontSize>
+                                </Label>
+
+                                <StackLayout
+                                    Orientation="Horizontal">
+                                    <Button
+                                        Text="Accept" 
+                                        HorizontalOptions="Start"
+                                        Margin="0,0,0,10"
+                                        BackgroundColor="#1d9ada"
+                                        TextColor="White"
+                                        TextTransform="None"
+                                        Style="{StaticResource FriendConfirmatiomButton}"/>
+                                    <Button
+                                        Text="Reject" 
+                                        HorizontalOptions="End"
+                                        BackgroundColor="White"
+                                        BorderColor="#fc403f"
+                                        TextColor="#fc403f"
+                                        BorderWidth="0.5"
+                                        Margin="10,0,0,10"
+                                        TextTransform="None"
+                                        Style="{StaticResource FriendConfirmatiomButton}"/>
+                                </StackLayout>
+                            </StackLayout>
+                        </StackLayout>
+                    </Frame>
+
+                    <Frame
+                        IsVisible="False"
+                        BorderColor="#efefef"
+                        Padding="3"
+                        x:Name="map_layout"
+                        Margin="0,5,0,0">
+                        <StackLayout 
+                            HorizontalOptions="FillAndExpand">
+                            <StackLayout.HeightRequest>
+                                <OnIdiom x:TypeArguments="x:Double">
+                                    <OnIdiom.Phone>200</OnIdiom.Phone>
+                                    <OnIdiom.Tablet>300</OnIdiom.Tablet>
+                                    <OnIdiom.Desktop>200</OnIdiom.Desktop>
+                                </OnIdiom>
+                            </StackLayout.HeightRequest>
+                            <maps:Map 
+                                x:Name="map" 
+                                VerticalOptions="FillAndExpand" 
+                                HorizontalOptions="FillAndExpand">
+                                <!--HasScrollEnabled="false"-->
+                            </maps:Map>
+                        </StackLayout>
+                    </Frame>
+                    
+                    <Label
+                        Margin="0,5,0,0"
+                        x:Name="History_label"
+                        Text="History"
+                        TextColor="#424242"
+                        HorizontalOptions="Center"
+                        HorizontalTextAlignment="Center">
+                        <Label.FontSize>
+                            <OnIdiom x:TypeArguments="x:Double">
+                                <OnIdiom.Phone>20</OnIdiom.Phone>
+                                <OnIdiom.Tablet>30</OnIdiom.Tablet>
+                                <OnIdiom.Desktop>20</OnIdiom.Desktop>
+                            </OnIdiom>
+                        </Label.FontSize>
+                    </Label>
+                    
+                    <Frame
+                        x:Name="Tab_layout"
+                        BorderColor="#efefef"
+                        Margin="0,5,0,0"
+                        BackgroundColor="White"
+                        HasShadow="False"
+                        CornerRadius="5"
+                        Padding="5">
+                        <Frame.HeightRequest>
+                            <OnIdiom x:TypeArguments="x:Double">
+                                <OnIdiom.Phone>40</OnIdiom.Phone>
+                                <OnIdiom.Tablet>60</OnIdiom.Tablet>
+                                <OnIdiom.Desktop>40</OnIdiom.Desktop>
+                            </OnIdiom>
+                        </Frame.HeightRequest>
+                        <StackLayout>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="25*" />
+                                    <ColumnDefinition Width="25*" />
+                                    <ColumnDefinition Width="25*" />
+                                    <ColumnDefinition Width="25*" />
+                                </Grid.ColumnDefinitions>
+                                
+                                <StackLayout
+                                    Grid.Column="0">
+                                    <Label
+                                        Text="All"
+                                        TextColor="#1c99d9"
+                                        x:Name="All_label"
+                                        VerticalOptions="CenterAndExpand"
+                                        VerticalTextAlignment="Center"
+                                        HorizontalOptions="CenterAndExpand">
+                                        <Label.FontSize>
+                                            <OnIdiom x:TypeArguments="x:Double">
+                                                <OnIdiom.Phone>18</OnIdiom.Phone>
+                                                <OnIdiom.Tablet>27</OnIdiom.Tablet>
+                                                <OnIdiom.Desktop>18</OnIdiom.Desktop>
+                                            </OnIdiom>
+                                        </Label.FontSize>
+                                    </Label>
+                                </StackLayout>
+
+                                <StackLayout
+                                    Grid.Column="1">
+                                    <Image 
+                                        Source="ic_sos_xx.png"
+                                        x:Name="sos_tab"
+                                        Style="{StaticResource IconImageStyle}"
+                                        VerticalOptions="CenterAndExpand"
+                                        HorizontalOptions="CenterAndExpand"/>
+                                </StackLayout>
+                                
+                                <Image 
+                                    Grid.Column="1"
+                                    Source="ic_blue_sos_xx.png"
+                                    x:Name="blue_sos_tab"
+                                    IsVisible="false"
+                                    Style="{StaticResource IconImageStyle}"
+                                    VerticalOptions="CenterAndExpand"
+                                    HorizontalOptions="CenterAndExpand"/>
+
+                                <StackLayout
+                                    Grid.Column="2">
+                                    <Image 
+                                        Source="ic_watch_me_xx.png"
+                                        x:Name="Watchme_tab"
+                                        Margin="0,0,10,0"
+                                        Style="{StaticResource IconImageStyle}"
+                                        VerticalOptions="CenterAndExpand">
+                                    </Image>
+                                </StackLayout>
+
+                                <Image 
+                                    Grid.Column="2"
+                                    Source="ic_blue_watch_me_xx.png"
+                                    x:Name="blue_watchme_tab"
+                                    Margin="0,0,10,0"
+                                    IsVisible="false"
+                                    Style="{StaticResource IconImageStyle}"
+                                    VerticalOptions="CenterAndExpand"/>
+
+                                <StackLayout
+                                     Grid.Column="3">
+                                    <Image 
+                                        Source="ic_message_xx.png"
+                                        x:Name="message_tab"
+                                        Margin="0,0,10,0"
+                                        Style="{StaticResource IconImageStyle}"
+                                        VerticalOptions="CenterAndExpand">
+                                    </Image>
+                                </StackLayout>
+
+                                <Image 
+                                    Grid.Column="3"
+                                    Source="ic_message_blue_xx.png"
+                                    x:Name="blue_message_tab"
+                                    Margin="0,0,10,0"
+                                    IsVisible="false"
+                                    Style="{StaticResource IconImageStyle}"
+                                    VerticalOptions="CenterAndExpand"/>
+                            </Grid>
+
+                            <Grid x:Name="boxview_grid" IsVisible="True">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="25*" />
+                                    <ColumnDefinition Width="25*" />
+                                    <ColumnDefinition Width="25*" />
+                                    <ColumnDefinition Width="25*" />
+                                </Grid.ColumnDefinitions>
+
+                                <BoxView
+                                    x:Name="all_boxview"
+                                    HeightRequest="3"
+                                    Grid.Column="0"
+                                    BackgroundColor="#1c99d9"
+                                    HorizontalOptions="FillAndExpand"
+                                    VerticalOptions="Start"/>
+
+                                <BoxView
+                                    x:Name="sos_boxview"
+                                    HeightRequest="3"
+                                    IsVisible="False"
+                                    Grid.Column="1"
+                                    BackgroundColor="#1c99d9"
+                                    HorizontalOptions="FillAndExpand"
+                                    VerticalOptions="Start"/>
+
+                                <BoxView
+                                    x:Name="watch_me_boxview"
+                                    IsVisible="False"
+                                    HeightRequest="3"
+                                    Grid.Column="2"
+                                    BackgroundColor="#1c99d9"
+                                    HorizontalOptions="FillAndExpand"
+                                    VerticalOptions="Start"/>
+
+                                <BoxView
+                                    x:Name="message_boxview"
+                                    IsVisible="False"
+                                    HeightRequest="3"
+                                    Grid.Column="3"
+                                    BackgroundColor="#1c99d9"
+                                    HorizontalOptions="FillAndExpand"
+                                    VerticalOptions="Start"/>
+                            </Grid>
+                        </StackLayout>
+                    </Frame>
+
+                    <Label 
+                        HorizontalTextAlignment="Center"
+                        VerticalTextAlignment="Center"
+                        HorizontalOptions="CenterAndExpand"
+                        VerticalOptions="CenterAndExpand"
+                        IsVisible="false"
+                        x:Name="message_label"
+                        TextColor="#bababa">
+                        <Label.FontSize>
+                            <OnIdiom x:TypeArguments="x:Double">
+                                <OnIdiom.Phone>20</OnIdiom.Phone>
+                                <OnIdiom.Tablet>30</OnIdiom.Tablet>
+                                <OnIdiom.Desktop>20</OnIdiom.Desktop>
+                            </OnIdiom>
+                        </Label.FontSize>
+                    </Label>
+
+                    <CollectionView 
+                        x:Name="historylistview"
+                        SelectionMode="None"
+                        RemainingItemsThreshold="1"
+                        RemainingItemsThresholdReached="LoadMoreHistory"
+                        BackgroundColor="#ffffff">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout
+                                    Margin="0,0,0,10">
+                                    <StackLayout
+                                        x:Name="Day_layout"
+                                        Orientation="Vertical"
+                                        BackgroundColor="#eeeeee"
+                                        Padding="5">
+                                        
+                                        <Label
+                                            Text="{Binding userLocationTO.createdTime}"
+                                            TextColor="#313131"
+                                            Margin="10,0,0,0"
+                                            HorizontalOptions="Start"
+                                            HorizontalTextAlignment="Center">
+                                            <Label.FontSize>
+                                                <OnIdiom x:TypeArguments="x:Double">
+                                                    <OnIdiom.Phone>18</OnIdiom.Phone>
+                                                    <OnIdiom.Tablet>27</OnIdiom.Tablet>
+                                                    <OnIdiom.Desktop>18</OnIdiom.Desktop>
+                                                </OnIdiom>
+                                            </Label.FontSize>
+                                        </Label>
+                                    </StackLayout>
+
+                                    <Grid Margin="10,0,0,0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="10*" />
+                                            <!--<ColumnDefinition Width="4*" />-->
+                                        </Grid.ColumnDefinitions>
+
+                                        <StackLayout
+                                            Grid.Column="0"
+                                            Orientation="Vertical">
+                                            <StackLayout
+                                                Orientation="Horizontal"
+                                                Margin="0,10,0,0">
+                                                <Image 
+                                                    Source="{Binding IconType}"
+                                                    VerticalOptions="CenterAndExpand"
+                                                    HorizontalOptions="Start">
+                                                    <Image.WidthRequest>
+                                                        <OnIdiom x:TypeArguments="x:Double">
+                                                            <OnIdiom.Phone>20</OnIdiom.Phone>
+                                                            <OnIdiom.Tablet>30</OnIdiom.Tablet>
+                                                            <OnIdiom.Desktop>20</OnIdiom.Desktop>
+                                                        </OnIdiom>
+                                                    </Image.WidthRequest>
+                                                    <Image.HeightRequest>
+                                                        <OnIdiom x:TypeArguments="x:Double">
+                                                            <OnIdiom.Phone>20</OnIdiom.Phone>
+                                                            <OnIdiom.Tablet>30</OnIdiom.Tablet>
+                                                            <OnIdiom.Desktop>20</OnIdiom.Desktop>
+                                                        </OnIdiom>
+                                                    </Image.HeightRequest>
+                                                </Image>
+
+                                                <Label 
+                                                    x:Name="Emergency_label"
+                                                    Text="{Binding triggerType}"
+                                                    HorizontalOptions="Start"
+                                                    VerticalOptions="CenterAndExpand"
+                                                    TextColor="#1c98d7">
+                                                    <Label.FontSize>
+                                                        <OnIdiom x:TypeArguments="x:Double">
+                                                            <OnIdiom.Phone>16</OnIdiom.Phone>
+                                                            <OnIdiom.Tablet>24</OnIdiom.Tablet>
+                                                            <OnIdiom.Desktop>16</OnIdiom.Desktop>
+                                                        </OnIdiom>
+                                                    </Label.FontSize>
+                                                </Label>
+                                            </StackLayout>
+
+                                            <Grid>
+                                                <Label 
+                                                    Text="{Binding AllAudits}"
+                                                    HorizontalOptions="Start"
+                                                    VerticalOptions="CenterAndExpand"
+                                                    Margin="0,2,0,8"
+                                                    TextColor="#545454">
+                                                    <Label.FontSize>
+                                                        <OnIdiom x:TypeArguments="x:Double">
+                                                            <OnIdiom.Phone>14</OnIdiom.Phone>
+                                                            <OnIdiom.Tablet>21</OnIdiom.Tablet>
+                                                            <OnIdiom.Desktop>14</OnIdiom.Desktop>
+                                                        </OnIdiom>
+                                                    </Label.FontSize>
+                                                </Label>
+                                            </Grid>
+                                        </StackLayout>
+                                    </Grid>
+                                </StackLayout>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+
+                    <Label
+                        VerticalOptions="CenterAndExpand"
+                        HorizontalOptions="CenterAndExpand"
+                        HorizontalTextAlignment="Center"
+                        IsVisible="False"
+                        Text="No history found!"
+                        x:Name="no_history_label">
+                        <Label.FontSize>
+                            <OnIdiom x:TypeArguments="x:Double">
+                                <OnIdiom.Phone>18</OnIdiom.Phone>
+                                <OnIdiom.Tablet>26</OnIdiom.Tablet>
+                                <OnIdiom.Desktop>18</OnIdiom.Desktop>
+                            </OnIdiom>
+                        </Label.FontSize>
+                    </Label>
+                </StackLayout>
+            </ScrollView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
